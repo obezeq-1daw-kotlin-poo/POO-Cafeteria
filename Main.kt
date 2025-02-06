@@ -1,43 +1,68 @@
 fun main() {
+    val cafeteraSalon = Cafetera("Salón")
+    val cafeteraCocina = Cafetera("Cocina", 750)
+    val cafeteraOficina = Cafetera("Oficina", 500, 200)
 
-    //TODO: Crear 3 cafeteras en la Sala, Cocina y Oficina
+    println("╔════════════════╗")
+    println("║  « CAFETERA »  ║")
+    println("╠════════════════╠")
+    println("║▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓║")
+    println("╚════════════════╝")
 
-    //TODO: Crear una lista de 20 tazas con capacidades aleatorias
+    print("\n[+] ¿Número de tazas a llenar? ")
+    val numTazas = readLine()!!.toInt()
+    val listaTazas = mutableListOf<Taza>()
+    for (i in 1..numTazas) {
+        listaTazas.add(Taza.nuevaTazaAleatoria())
+    }
 
+    println("\n──────────────────────────────────────────────────────────────────")
+    println("                          Estado inicial                          ")
+    println("──────────────────────────────────────────────────────────────────")
 
-    println("**********************************************")
-    //TODO: Mostrar por pantalla el contenido de las 3 cafeteras y las tazas.
+    println(cafeteraSalon)
+    println(cafeteraCocina)
+    println(cafeteraOficina)
 
-    println("**********************************************")
-    println("Llenar la cafetera1 de café...")
-    println("Vaciar la cafetera2...")
-    println("Agregar café a la cafetera2 a la mitad de su capacidad...")
-    println("Agregar 400 c.c. de café a la cafereta3...")
+    println("\n░░░░░░░░░░░")
+    println("░░ Tazas ░░")
+    println("░░░░░░░░░░░")
 
-    //TODO: Llenar la cafetera1 de café.
+    for (taza in listaTazas) {
+        println(taza)
+    }
 
+    cafeteraSalon.llenar()
+    cafeteraCocina.vaciar()
+    cafeteraCocina.agregarCafe(cafeteraCocina.capacidad / 2)
+    cafeteraOficina.agregarCafe(400)
 
-    //TODO: Vaciar la cafetera2.
+    println("\n──────────────────────────────────────────────────────────────────")
+    println("                 Después de preparar cafeteras                    ")
+    println("──────────────────────────────────────────────────────────────────")
+    println(cafeteraSalon)
+    println(cafeteraCocina)
+    println(cafeteraOficina)
 
+    var tazasServidas = 0
+    for (taza in listaTazas) {
+        when {
+            cafeteraSalon.cantidad > 0 -> cafeteraSalon.servirTaza(taza)
+            cafeteraCocina.cantidad > 0 -> cafeteraCocina.servirTaza(taza)
+            cafeteraOficina.cantidad > 0 -> cafeteraOficina.servirTaza(taza)
+            else -> break
+        }
+        tazasServidas++
+    }
 
-    //TODO: Agregar café a la cafetera2 a la mitad de su capacidad.
-
-
-    //TODO: Agregar 400 c.c. de café a la cafereta3
-
-
-    println("**********************************************")
-    //TODO: Mostrar por pantalla el contenido de las 3 cafeteras
-
-
-    println("**********************************************")
-    println("Servir café en las tazas...")
-
-    //TODO: Servir café en las tazas... siempre que haya café en la cafetera y en el orden cafetera1, cafetera2 y cafetera3.
-
-
-    println("**********************************************")
-    //TODO: Mostrar por pantalla el contenido de las 3 cafeteras y las tazas.
-
-
+    println("\n──────────────────────────────────────────────────────────────────")
+    println("                          Estado final                            ")
+    println("──────────────────────────────────────────────────────────────────")
+    println(cafeteraSalon)
+    println(cafeteraCocina)
+    println(cafeteraOficina)
+    println("\n░░ Tazas servidas ($tazasServidas de ${listaTazas.size}) ░░")
+    for (taza in listaTazas) {
+        println(taza)
+    }
 }
